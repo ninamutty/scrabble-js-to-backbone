@@ -21,6 +21,14 @@ describe('Player', function() {
     it('totalScore starts at 0', function() {
       expect(player.totalScore()).toEqual(0);
     });
+    it('Calculates Total Score Correctly', function() {
+      player.plays = ['aaa', 'eee', 'iii'];
+      expect(player.totalScore()).toEqual(9);
+    });
+    it('Calculates Total Score Correctly with 7-letter word bonus', function() {
+      player.plays = ['aaa', 'eee', 'iii', 'aaaaaaa'];
+      expect(player.totalScore()).toEqual(9 + 57);
+    });
   });
 
 
