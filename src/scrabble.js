@@ -32,7 +32,7 @@ Scrabble.score = function(word) {
 
 
 Scrabble.highestScoreFrom = function(arrayOfWords) {
-  if (arrayOfWords == []){
+  if (arrayOfWords.constructor !== Array || arrayOfWords.length == 0){
     return null;   // If there is nothing in the array, return null as the highest scoring word
   } else if (arrayOfWords.length == 1) {
     return arrayOfWords[0]; // If there is only one thing, return that thing and don't bother with loops

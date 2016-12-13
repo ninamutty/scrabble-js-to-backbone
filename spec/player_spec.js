@@ -36,5 +36,28 @@ describe('Player', function() {
     it('Starts off being false', function() {
       expect(player.hasWon()).toBeFalsy();
     });
+    it("hasn't won until score over 100", function() {
+        // each 'word' is 1 pt.
+      player.plays = ['aaaaa', 'aaaaa', 'aaaaa', 'aaaaa', 'aaaaa', 'aaaaa', 'aaaaa', 'aaaaa', 'aaaaa', 'aaaaa', 'aaaaa', 'aaaaa', 'aaaaa', 'aaaaa', 'aaaaa',
+      'aaaaa', 'aaaaa', 'aaaaa', 'aaaaa',
+      'aaaa'];  // last entry is 4 letters 1 pt each.
+
+        /*  for clarity  */
+      expect(player.totalScore()).toEqual(99);
+      expect(player.hasWon()).toBeFalsy();
+      player.plays.push('a'); // add 1 pt
+        // Check equals to 100 score
+      expect(player.hasWon()).toBeFalsy();
+      player.plays.push('a'); // add 1 pt
+      expect(player.hasWon()).not.toBeFalsy(); // <-- notice the .not
+    });
+  });
+
+  describe('highestScoringWord', function() {
+    it('If no words played it returns null', function() {
+      // no word played yet
+      player.plays = [];
+      expect(player.highestScoringWord()).toBeNull();
+    });
   });
 });

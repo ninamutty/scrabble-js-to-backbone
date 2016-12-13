@@ -20,4 +20,8 @@ Player.prototype.totalScore = function() {
   return total;
 };
 
+Player.prototype.highestScoringWord = function() {
+  return Scrabble.highestScoreFrom(this.plays);
+};
+
 export default Player;
