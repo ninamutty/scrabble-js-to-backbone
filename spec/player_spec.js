@@ -99,6 +99,25 @@ describe('Player', function() {
       player.plays = ['fff'];
       expect(player.highestWordScore()).toEqual(12);
     });
-    
+
+  });
+
+  describe('play', function() {
+    it('play exists', function() {
+      expect(player.play).toBeFunction();
+    });
+    it('play adds a word to plays', function() {
+      player.play('Bananna');
+      expect(player.plays).toContain('Bananna');
+    });
+    it("After you've won you can't add more words", function() {
+      player.plays = ['aaaaaaa', 'aaaaaaa'];
+      player.play('Bananna');
+      expect(player.plays).not.toContain('Bananna');
+    });
+    it("After you've won play returns false", function() {
+      player.plays = ['aaaaaaa', 'aaaaaaa'];
+      expect(player.play('Bananna')).toBeFalsy();
+    });
   });
 });
