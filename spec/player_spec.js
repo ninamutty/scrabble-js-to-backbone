@@ -59,5 +59,21 @@ describe('Player', function() {
       player.plays = [];
       expect(player.highestScoringWord()).toBeNull();
     });
+    it('Returns a word if only one played', function() {
+      // no word played yet
+      player.plays = ['bob'];
+      expect(player.highestScoringWord()).toEqual('bob');
+    });
+    it('If no words played it returns the highest scoring word', function() {
+      // no word played yet
+      player.plays = ['aaa', 'bbb', 'zzz'];
+      expect(player.highestScoringWord()).toEqual('zzz');
+
+      player.plays = ['aaa', 'zzz', 'bbb'];
+      expect(player.highestScoringWord()).toEqual('zzz');
+
+      player.plays = ['zzz', 'aaa', 'bbb'];
+      expect(player.highestScoringWord()).toEqual('zzz');
+    });
   });
 });
