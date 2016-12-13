@@ -28,4 +28,12 @@ Player.prototype.highestWordScore = function() {
   return Scrabble.score(Scrabble.highestScoreFrom(this.plays));
 };
 
+Player.prototype.play = function(word) {
+  if (this.hasWon()){
+    return false;
+  } else {
+    this.plays.push(word);
+  }
+}
+
 export default Player;
