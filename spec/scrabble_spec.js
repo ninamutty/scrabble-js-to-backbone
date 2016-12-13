@@ -17,7 +17,7 @@ describe('Scrabble', function() {
   });
 
   // Testing Score word
-  xdescribe('Testing Score for a word', function() {
+  describe('Testing Score for a word', function() {
     it('Function exists', function() {
       expect(Scrabble.score).toBeFunction();
     });
@@ -36,7 +36,7 @@ describe('Scrabble', function() {
       // Add testing for invalid words punctuation etc.
   });
 
-  xdescribe('testing highestScoreFrom', function() {
+  describe('testing highestScoreFrom', function() {
     it('highestScoreFrom exists', function() {
       expect(Scrabble.highestScoreFrom).toBeFunction();
     });
@@ -52,5 +52,4 @@ describe('Scrabble', function() {
       expect(Scrabble.highestScoreFrom(['aaa', 'eee'])).toEqual('aaa');
     });
   });
-
 });
