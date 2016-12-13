@@ -34,6 +34,6 @@ Player.prototype.play = function(word) {
   } else {
     this.plays.push(word);
   }
-}
+};
 
 export default Player;
