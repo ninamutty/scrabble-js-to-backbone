@@ -3,17 +3,19 @@
 import Player from 'player';
 
 
-xdescribe('Player', function() {
+describe('Player', function() {
   var player;
   beforeEach(function() {
-    player = new Player("bob");
+    player = new Player({
+      name: "bob"
+    });
   });
   describe('Constructor', function() {
     it('Constructor Exists', function() {
       expect(Player).toBeFunction();
     });
     it('Constructor Initializes attributes', function() {
-      expect(player.name).toEqual("bob");
+      expect(player.get('name')).toEqual("bob");
       expect(player.plays).toEqual([]);
     });
   });
