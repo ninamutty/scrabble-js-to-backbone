@@ -1,3 +1,4 @@
+// spec/scrabble_spec.js
 
 import Scrabble from 'scrabble';
 
@@ -43,6 +44,12 @@ describe('Scrabble', function() {
       expect(Scrabble.highestScoreFrom(['aaa', 'bbb', 'abc', 'ppp', 'zzz'])).toEqual('zzz');
       expect(Scrabble.highestScoreFrom(['zzz', 'bbb', 'abc', 'ppp', 'aaa'])).toEqual('zzz');
       expect(Scrabble.highestScoreFrom(['bbb', 'abc', 'zzz', 'ppp', 'aaa'])).toEqual('zzz');
+    });
+    it('highestScoreFrom considers the 7-letter word score', function() {
+      expect(Scrabble.highestScoreFrom(['aaa', 'bbb', 'abc', 'ppp', 'zzz', 'aaaaaaa'])).toEqual('aaaaaaa');
+    });
+    it('highestScoreFrom if two words have the same score it picks the first', function() {
+      expect(Scrabble.highestScoreFrom(['aaa', 'eee'])).toEqual('aaa');
     });
   });
 
