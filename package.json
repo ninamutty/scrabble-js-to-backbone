@@ -1,7 +1,7 @@
 {
-  "name": "tic-tac-toe",
+  "name": "scrabble-to-backbone",
   "version": "1.0.0",
-  "description": "Tic-Tac-Toe game written in JavaScript and Backbone",
+  "description": "An example of migrating Scrabble in JS to Backbone Model",
   "main": "./bin/app.bundle.js",
   "scripts": {
     "start": "webpack-dashboard -- webpack-dev-server",
@@ -10,11 +10,11 @@
   },
   "author": "Ada Developers Academy <contact@adadevelopersacademy.org>",
   "license": "MIT",
-  "repository": "AdaGold/tic-tac-toe",
+  "repository": "Ada-C6/scrabble-to-backbone",
   "bugs": {
-    "url": "https://github.com/AdaGold/tic-tac-toe/issues"
+    "url": "https://github.com/Ada-C6/scrabble-to-backbone/issues"
   },
-  "homepage": "https://github.com/AdaGold/tic-tac-toe#readme",
+  "homepage": "https://github.com/Ada-C6/scrabble-to-backbone#readme",
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-core": "^6.18.2",
