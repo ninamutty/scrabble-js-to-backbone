@@ -39,6 +39,11 @@ describe('Scrabble', function() {
     it('highestScoreFrom exists', function() {
       expect(Scrabble.highestScoreFrom).toBeFunction();
     });
+    it('highestScoreFrom picks the highest score from a list of words', function() {
+      expect(Scrabble.highestScoreFrom(['aaa', 'bbb', 'abc', 'ppp', 'zzz'])).toEqual('zzz');
+      expect(Scrabble.highestScoreFrom(['zzz', 'bbb', 'abc', 'ppp', 'aaa'])).toEqual('zzz');
+      expect(Scrabble.highestScoreFrom(['bbb', 'abc', 'zzz', 'ppp', 'aaa'])).toEqual('zzz');
+    });
   });
 
 });
