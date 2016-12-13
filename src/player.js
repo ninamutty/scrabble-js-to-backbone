@@ -1,6 +1,7 @@
 // player.js
 
 import Scrabble from 'scrabble';
+import Backbone from 'backbone';
 
 const Player = function(name) {
   this.name = name;
