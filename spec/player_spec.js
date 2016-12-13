@@ -75,5 +75,30 @@ describe('Player', function() {
       player.plays = ['zzz', 'aaa', 'bbb'];
       expect(player.highestScoringWord()).toEqual('zzz');
     });
+    it('Testing Considers 7-letter word score', function() {
+      // no word played yet
+      player.plays = ['aaa', 'bbb', 'zzz', 'aaaaaaa'];
+      expect(player.highestScoringWord()).toEqual('aaaaaaa');
+
+      player.plays = ['aaaaaaa', 'aaa', 'zzz', 'bbb'];
+      expect(player.highestScoringWord()).toEqual('aaaaaaa');
+
+      player.plays = ['zzz', 'aaaaaaa', 'aaa', 'bbb'];
+      expect(player.highestScoringWord()).toEqual('aaaaaaa');
+    });
+  });
+
+  describe('highestWordScore', function() {
+
+    it('highestWordScore exists', function() {
+      expect(player.highestWordScore).toBeFunction();
+    });
+    it('highestWordScore calculates the highest scoring word number', function() {
+      player.plays = ['zzz', 'aaaaaaa', 'aaa', 'bbb'];
+      expect(player.highestWordScore()).toEqual(57);
+      player.plays = ['fff'];
+      expect(player.highestWordScore()).toEqual(12);
+    });
+    
   });
 });
