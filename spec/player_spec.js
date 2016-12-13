@@ -2,7 +2,8 @@
 
 import Player from 'player';
 
-describe('Player', function() {
+
+xdescribe('Player', function() {
   var player;
   beforeEach(function() {
     player = new Player("bob");
