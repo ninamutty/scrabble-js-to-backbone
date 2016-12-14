@@ -1,76 +1,204 @@
-# Tic-Tac-Toe
-Bring an interactive Tic-Tac-Toe game to life! You'll start with a plain JavaScript program that can be played in the terminal. From there you'll extend the game logic into a full Backbone web application and connect it to a back-end API (which will be provided).
+# Scrabble-JS Total Conversion to Backbone.js!
+
+We've already done Scrabble & Player objects in Javascript.  Now we'll take those generic objects and turn'em into Backbone Models! 
 
 ## Learning Goals
-With this project you'll get exposure to the following skills:
-- JavaScript unit testing with [Jasmine](https://jasmine.github.io/)
-- Program/code design from scratch
-- Writing an application with complex model logic
-- Reworking existing code for a new environment (plain JS -> Backbone)
-- Backbone API integration
+With this live code/lecture develop the following skills skills:
+- Learn how Backbone Models compare with pure Javascript Objects.
+- Learn how to adjust Jasmine tests for Backbone models
+
 
 ### Baseline Setup
-This project uses the same [Backbone scaffold](https://github.com/AdaGold/backbone-baseline) from the previous Backbone projects. For the first wave you will not need to use Backbone or jQuery at all, however it will be simpler to convert your code to Backbone later on with all of the scaffold in place.
+The starting code with Scrabble & Player objects are located [here]().  The file has two JavaScript files `src/scrabble.js` and `src/player.js`.  It also has two spec files `spec/scrabble_spec.js` and `spec/player_spec.js`.  
 
-#### Project Forks
-Because the initial implementation of a Tic-Tac-Toe game involves more coding and testing than the later coversion to Backbone you will be working in pairs to complete portion of the project (wave one). One person in the pair should fork the main Ada repository and give collaborator access to their partner.
+Go ahead and fork & clone the repo.  
 
-However for the later waves everyone will be working individually. To make this work, once we switch to wave two and beyond the partner who did _not_ fork from Ada should create their own fork _from their partner's fork_. This process works the same way as forking from Ada -- you open your pair partner's GitHub repo website and click the Fork button.
-
-For the individual waves each person should still submit their Pull Requests to the original Ada repository.
+Then take a minute to look at the `scrabble.js` and `player.js` together with your partner to get a bit familiar with them.  
 
 #### Commands
-Because this uses the scaffold you still need to run `npm install` after forking and cloning the repository. You do not need to run `npm start` until waves two and three, because until then your project code will not be a web application.
+Because this uses the scaffold you still need to run `npm install` after forking and cloning the repository. **You do not need to run** `npm start` as we won't have a web application.
 
 To run your tests you should use the command `npm test`.
 
 #### Using the REPL
-If you want to interact with your game in the terminal via a REPL, you'll need to do things in a specific way (due to the scaffold's use of webpack).
+If you want to interact with the Scrabble objects in the terminal via a REPL, you'll need to do things in a specific way (due to the scaffold's use of webpack).
 
-To access the REPL you should use the command `npm run repl` in your project directory. Once in the REPL, you'll need to use the following syntax to import your file (this example assumes it was named `src/game.js`):
+To access the REPL you should use the command `npm run repl` in your project directory. Once in the REPL, you'll need to use the following syntax to import your file (this example assumes it was named `src/scrabble.js`):
 
 ```javascript
-var Game = require('game').default;
-var game = new Game();
+const Scrabble = require('scrabble').default;
+console.log(Scrabble.score("Ada");
+
+const Player = require('player').default;
+var player1 = new Player("Ada");
+console.log(player1.hasWon());
 ```
 
-NOTE: This only works if your `game.js` file has an `export default` line in it, which it should (it'll be necessary for the Backbone conversion).
+## Converting Scrabble to a Backbone Model
 
-## Requirements
-This project is divided into three waves that will be completed over the next two weeks. The majority of the first week will be dedicated to wave one, with the second and third waves taking place the week after. You will work on wave one as a pair, and then complete waves two and three individually.
+Scrabble is a fairly simple JavaScript object it has only 3 'static' function, one of which is a helper function.  `scoreLetter()` and `highestScoreFrom()`.  So we can first Modify it by changing the generic object to instead extend Backbone.Model.
 
-### Wave One
-The primary learning goals in this wave are writing unit tests for JavaScript with Jasmine, and program/code design. What we mean by program design is that the specific approach to implementing your Tic-Tac-Toe game's logic will be up to you.
+```javascript
+const Scrabble = Backbone.Model.extend({
+}, 
+{
+});
+```
 
-#### Program Design
-The overarching goal with the program design requirement is for you to spend more time at the beginning of the project thinking about what functionality the application needs, how that can be split up into specific objects and functions, and what the inputs and outputs of those functions are.
+Note I have 2 parameters here in the extend function.  The first parameter is a JavaScript object listing instance variables that any new instance of the model will receive.  The second is a Javascript object listing static methods and attributes that will apply to the Model.  In other words if you provided an attribute to the second parameter attribute all instances of Scrabble would share that property.  
 
-This might seem like an unwarranted distraction from diving right into the code when you're under such time constraints. But a great deal of time can be saved by avoiding costly refactors if it turns out that your initial approach won't allow you to achieve certain requirements. The more complex the application's logic is, the more difficult and time-consuming it will be to rework that logic after it has been written.
+Since the generic Scrabble object only had static methods, no instance data, we can give it only static functions.
 
-#### User Stories
-For this project you'll need to create your own users stories as a pair, based on your understanding of the Tic-Tac-Toe. For some examples on how user stories work, check out the [project requirements from bEtsy](https://github.com/AdaGold/betsy#user-stories).
+As an example if we wanted to give a static function `sample()` to Scrabble we could do it this way:
 
-Some things to keep in mind:
-- Any constructor functions you create should not take any arguments. This is only to minimize the work needed to later convert your code into a Backbone Model.
-- Some of your stories will likely map 1-to-1 to individual functions, while others might describe certain aspects of how a single function should behave.
-- Because the code you're writing for wave one is the "business logic" of a Tic-Tac-Toe game, the human users of your application will not be interacting with it directly. Instead, the "users" you're writing these stories for will be other code in your project -- Jasmine tests or Backbone Views.
+```javascript
+const Scrabble = Backbone.Model.extend({
+  // instance functions/attributes go here!
+},
+{  // static functions go here!
+  sample: function() {
+    console.log("This works!");
+  }
+});
+```
 
-To keep things simple, your code should live in a single JavaScript file (e.g. `src/game.js`). For the first wave you should implement the Tic-Tac-Toe game with the "object-oriented" style used for the [Scrabble](https://github.com/AdaGold/js-scrabble) project.
+Notice that the function has the `name: function() { ...` syntax instead of `Scrabble.prototype.name = function() {...`.  We can convert the scoreLetter function this way.
 
-#### Testing Requirements
-You should strive to follow the BDD approach when building this application. Whenever you decide that a new function is necessary to implement one or another feature, you should begin by writing tests for that function.
+```javascript
+const Scrabble = Backbone.Model.extend({
 
-- Every function in your application should have at least two tests
-- All tests should pass
-- We don't have any code coverage tool setup for this project, but if you have every function tested then it should be essentially 100%
+}, 
+{
+  scoreLetter: function(letter) {
+    letter = letter.toUpperCase();
+    var letters = ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T', 'D', 'G', 'B', 'C', 'M', 'P', 'F', 'H', 'V', 'W', 'Y', 'K', 'J', 'X', 'Q', 'Z'];
+    var scores = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 8, 8, 10, 10];
+    for (var i = 0; i < letters.length; i++){
+      if (letters[i] == letter){
+        return scores[i];
+      }
+    }
+    return 0;
+  }
+});
+```
 
-### Wave Two:
-In this wave you will convert your existing Tic-Tac-Toe game code into a Backbone Model and create a Backbone View for rendering and interacting with that model.
+### Convert Scrabble.js to a Backbone Model.
 
-#### Converting to Backbone Model
-More details forthcoming
+Now you & your partner work to convert the rest of the `scrabble.js` file to a Backbone Model.
 
-### Wave Three:
-In this wave you'll connect the Backbone web application you created in the previous wave to an existing Rails API that has standard RESTful CRUD routes.
+Then run the tests with `npm test`.
 
-- Read the documentation for the [Tic-Tac-Toe API](https://github.com/Ada-c6/tic-tac-toe-api)
+### Check-In
+
+Now check your results with [this Gist](https://gist.github.com/CheezItMan/b8e420690c99b532a4399927480eb153).
+
+
+## Converting Player to Backbone
+
+Player is a bit more complicated, the player has some instance data, plays and name and a bunch of instance methods.  We'll take a two step approach, one step to get it working and then to improve our code and make it a bit more "Backbony." (tm).  
+
+### Getting the darn thing working!
+
+First we can convert the constructor to an `initialize()` function.
+
+```javascript
+const Player = Backbone.Model.extend({
+  defaults: {
+  },
+  initialize: function(options) {
+    this.name = options.name;
+    this.plays = [];
+  },
+  {} // optional static properties object
+});
+```
+
+Notice that we changed this:
+
+```javascript
+const Player = function(name) {
+  this.name = name;
+  this.plays = [];
+};
+```
+
+to this:
+
+```javascript
+initialize: function(options) {
+  this.name = options.name;
+  this.plays = [];
+}
+```
+Because the initialize function plays much the same role as a constructor in Backbone.  
+
+We also left the defaults object in, just so we can add to it later at the end.
+
+### Now add the rest of the functions
+
+Next you an your partner finish migrating the rest of the functions into the Backbone Model.
+
+Then run your tests with `npm test`
+
+### Check-in
+
+When you finish you can check your code [here](https://gist.github.com/CheezItMan/3034de6f979b27e36144bf14b1088018):  
+
+### Creating Instances of Player
+
+You can then create new player instances with:
+
+```javascript
+var player1 = new Player( {
+  name: 'Ms. Lovelace'
+});
+```
+
+### Making it Backbony!
+
+For this we need to understand the difference between Backbone attributes (which you get and set with the `get()` and `set()` functions).  Like we did above, we've added instance variables `plays` and `name` to instances of the model.  The alternative is to use Backbone attributes set in the `defaults` object or using the `set` function.  
+
+#### Why Use Backbone Attributes?
+
+For what we're doing so far, Backbone Attributes are a bit of overkill, but they do provide a few features which could be useful in... Tic-Tac-Toe!
+
+1.  Changing a Backbone Attribute triggers the `change` event on the model, which can be critical in rendering a model in a view.  
+1.  Backbone has a `fetch()` and a `save()` function which could potentially help you connect a model with a server's API to get and save data, assuming the attributes match attributes specified in the API.  Hmmm... maybe reading an API ahead of time is a good idea.  Don't worry, if they don't exactly match, there's a work-around.  
+
+You can convert plays and name to attributes here.
+
+```javascript
+// src/player.js
+const Player = Backbone.Model.extend({
+  defaults: {
+    plays: [],
+    name: "Player-?"
+  },
+  initialize: function(options) {
+
+  },
+	...
+```
+
+People create a new player like this:
+
+```javascript
+var player1 = new Player({
+  name: 'Ada Lovelace'
+  });
+```
+
+
+## What!  All My Tests Broke!
+
+Yes, the tests were written using the attribute instead of using `get()` and `set()`, and yes OMG that's a lot to change.  
+
+Don't worry, you can find working tests [here](https://gist.github.com/CheezItMan/2d617fc903bf381c549b2859cc13c0bf):
+
+
+# Resources & Notes
+-  Thanks to Emily for the original JavaScript code
+-  [Backbone & Jasmine Testing](https://www.youtube.com/watch?v=GqEzbKoKbsI&t=1144s)
+	- [Source Code](https://github.com/brendajin/jasmine-backbone)
+
