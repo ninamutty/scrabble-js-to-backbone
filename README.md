@@ -196,6 +196,17 @@ Yes, the tests were written using the attribute instead of using `get()` and `se
 
 Don't worry, you can find working tests [here](https://gist.github.com/CheezItMan/2d617fc903bf381c549b2859cc13c0bf):
 
+## JS Objects vs Backbone Models
+
+Backbone Models are JavaScript Objects with a number of additional functions inherited from Backbone.Model.  
+
+When you use Backbone Models you need to remember:
+
+1.  You can determine how the model is set up with the `initialize()` function.  
+1.  Instance functions are passed in via an object in the 1st argument to the extend function.  
+1.  Static functions are passed in via an optional 2nd argument to extend.  
+1.  Backbone attributes are useful when you want to synch data with a server via an API or when you want the `change` event to trigger when they are modified.  
+
 
 # Resources & Notes
 -  Thanks to Emily for the original JavaScript code
