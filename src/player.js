@@ -5,32 +5,34 @@ import Backbone from 'backbone';
 
 const Player = Backbone.Model.extend({
   defaults: {
+    plays: [],
+    name: "Player-?"
   },
   initialize: function(options) {
-    this.name = options.name;
-    this.plays = [];
+
   },
   hasWon: function() {
     return this.totalScore() > 100;
   },
   totalScore: function() {
     var total = 0;
-    for (var i = 0; i < this.plays.length; i++){
-      total += Scrabble.score(this.plays[i]);
+    var plays = this.get('plays');
+    for (var i = 0; i < plays.length; i++){
+      total += Scrabble.score(plays[i]);
     }
     return total;
   },
   highestScoringWord: function() {
-    return Scrabble.highestScoreFrom(this.plays);
+    return Scrabble.highestScoreFrom(this.get('plays'));
   },
   highestWordScore: function() {
-    return Scrabble.score(Scrabble.highestScoreFrom(this.plays));
+    return Scrabble.score(Scrabble.highestScoreFrom(this.get('plays')));
   },
   play: function(word) {
     if (this.hasWon()){
       return false;
     } else {
-      this.plays.push(word);
+      this.get('plays').push(word);
     }
   }
 }
