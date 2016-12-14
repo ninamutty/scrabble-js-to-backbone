@@ -9,7 +9,7 @@ With this live code/lecture develop the following skills skills:
 
 
 ### Baseline Setup
-The starting code with Scrabble & Player objects are located [here]().  The file has two JavaScript files `src/scrabble.js` and `src/player.js`.  It also has two spec files `spec/scrabble_spec.js` and `spec/player_spec.js`.  
+The starting code with Scrabble & Player objects are located [here](https://github.com/CheezItMan/scrabble-js-to-backbone).  The file has two JavaScript files `src/scrabble.js` and `src/player.js`.  It also has two spec files `spec/scrabble_spec.js` and `spec/player_spec.js`.  
 
 Go ahead and fork & clone the repo.  
 
@@ -196,11 +196,20 @@ Yes, the tests were written using the attribute instead of using `get()` and `se
 
 Don't worry, you can find working tests [here](https://gist.github.com/CheezItMan/2d617fc903bf381c549b2859cc13c0bf):
 
+## JS Objects vs Backbone Models
+
+Backbone Models are JavaScript Objects with a number of additional functions inherited from Backbone.Model.  
+
+When you use Backbone Models you need to remember:
+
+1.  You can determine how the model is set up with the `initialize()` function.  
+1.  Instance functions are passed in via an object in the 1st argument to the extend function.  
+1.  Static functions are passed in via an optional 2nd argument to extend.  
+1.  Backbone attributes are useful when you want to synch data with a server via an API or when you want the `change` event to trigger when they are modified.  
+
 
 # Resources & Notes
 -  Thanks to Emily for the original JavaScript code
 -  [Backbone & Jasmine Testing](https://www.youtube.com/watch?v=GqEzbKoKbsI&t=1144s)
 	- [Source Code](https://github.com/brendajin/jasmine-backbone)
-
-
 
