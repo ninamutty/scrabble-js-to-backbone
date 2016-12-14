@@ -48,7 +48,7 @@ The argument to extend a JavaScript object listing attributes and functions that
 
 Since the generic Scrabble object only a few functions, no instance data, that makes a conversion relatively straightforward.
 
-As an example if we wanted to give a static function `sample()` to Scrabble we could do it this way:
+We can add a function called `sample()` to Scrabble this way:
 
 ```javascript
 const Scrabble = Backbone.Model.extend(
