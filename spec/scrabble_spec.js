@@ -19,17 +19,17 @@ describe('Scrabble', function() {
   // Testing Score word
   describe('Testing Score for a word', function() {
     it('Function exists', function() {
-      expect(Scrabble.score).toBeFunction();
+      expect(scrabble.score).toBeFunction();
     });
 
     it('Scores an empty word correctly', function() {
-      expect(Scrabble.score('')).toEqual(0);
+      expect(scrabble.score('')).toEqual(0);
     });
     it('scores "bob" correctly', function() {
-      expect(Scrabble.score('bob')).toEqual(7);
+      expect(scrabble.score('bob')).toEqual(7);
     });
     it('scores 7-letter words', function() {
-      expect(Scrabble.score('aaaaaaa')).toEqual(50 + 7);
+      expect(scrabble.score('aaaaaaa')).toEqual(50 + 7);
     });
 
     //Todo
@@ -38,18 +38,18 @@ describe('Scrabble', function() {
 
   describe('testing highestScoreFrom', function() {
     it('highestScoreFrom exists', function() {
-      expect(Scrabble.highestScoreFrom).toBeFunction();
+      expect(scrabble.highestScoreFrom).toBeFunction();
     });
     it('highestScoreFrom picks the highest score from a list of words', function() {
-      expect(Scrabble.highestScoreFrom(['aaa', 'bbb', 'abc', 'ppp', 'zzz'])).toEqual('zzz');
-      expect(Scrabble.highestScoreFrom(['zzz', 'bbb', 'abc', 'ppp', 'aaa'])).toEqual('zzz');
-      expect(Scrabble.highestScoreFrom(['bbb', 'abc', 'zzz', 'ppp', 'aaa'])).toEqual('zzz');
+      expect(scrabble.highestScoreFrom(['aaa', 'bbb', 'abc', 'ppp', 'zzz'])).toEqual('zzz');
+      expect(scrabble.highestScoreFrom(['zzz', 'bbb', 'abc', 'ppp', 'aaa'])).toEqual('zzz');
+      expect(scrabble.highestScoreFrom(['bbb', 'abc', 'zzz', 'ppp', 'aaa'])).toEqual('zzz');
     });
     it('highestScoreFrom considers the 7-letter word score', function() {
-      expect(Scrabble.highestScoreFrom(['aaa', 'bbb', 'abc', 'ppp', 'zzz', 'aaaaaaa'])).toEqual('aaaaaaa');
+      expect(scrabble.highestScoreFrom(['aaa', 'bbb', 'abc', 'ppp', 'zzz', 'aaaaaaa'])).toEqual('aaaaaaa');
     });
     it('highestScoreFrom if two words have the same score it picks the first', function() {
-      expect(Scrabble.highestScoreFrom(['aaa', 'eee'])).toEqual('aaa');
+      expect(scrabble.highestScoreFrom(['aaa', 'eee'])).toEqual('aaa');
     });
   });
 });

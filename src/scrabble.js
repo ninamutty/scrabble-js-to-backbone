@@ -4,8 +4,6 @@ import Backbone from 'backbone';
 
 // Create default Scrabble object
 const Scrabble = Backbone.Model.extend({
-
-}, {
   scoreLetter: function(letter) {
     letter = letter.toUpperCase();
     var letters = ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T', 'D', 'G', 'B', 'C', 'M', 'P', 'F', 'H', 'V', 'W', 'Y', 'K', 'J', 'X', 'Q', 'Z'];
@@ -20,7 +18,7 @@ const Scrabble = Backbone.Model.extend({
   score: function(word) {
     var total = 0;
     for (var i = 0; i < word.length; i++){
-      total += Scrabble.scoreLetter(word[i]);
+      total += this.scoreLetter(word[i]);
     }
     if (word.length == 7){
       total += 50;
@@ -35,10 +33,10 @@ const Scrabble = Backbone.Model.extend({
     }
 
     //If we got here, there are multiple words in the array
-    var highest = [arrayOfWords[0], Scrabble.score (arrayOfWords[0])];
+    var highest = [arrayOfWords[0], this.score (arrayOfWords[0])];
 
     for (var i = 0; i < arrayOfWords.length; i++){
-      var score = Scrabble.score(arrayOfWords[i]);
+      var score = this.score(arrayOfWords[i]);
       if (score > highest[1]) {
         highest = [arrayOfWords[i], score];
       } else if (score == highest[1]) {

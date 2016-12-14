@@ -9,7 +9,7 @@ const Player = Backbone.Model.extend({
     name: "Player-?"
   },
   initialize: function(options) {
-
+    this.scrabble = new Scrabble();
   },
   hasWon: function() {
     return this.totalScore() > 100;
@@ -18,15 +18,15 @@ const Player = Backbone.Model.extend({
     var total = 0;
     var plays = this.get('plays');
     for (var i = 0; i < plays.length; i++){
-      total += Scrabble.score(plays[i]);
+      total += this.scrabble.score(plays[i]);
     }
     return total;
   },
   highestScoringWord: function() {
-    return Scrabble.highestScoreFrom(this.get('plays'));
+    return this.scrabble.highestScoreFrom(this.get('plays'));
   },
   highestWordScore: function() {
-    return Scrabble.score(Scrabble.highestScoreFrom(this.get('plays')));
+    return this.scrabble.score(this.scrabble.highestScoreFrom(this.get('plays')));
   },
   play: function(word) {
     if (this.hasWon()){
