@@ -3,7 +3,7 @@
 We've already done Scrabble & Player objects in Javascript.  Now we'll take those generic objects and turn'em into Backbone Models! 
 
 ## Learning Goals
-With this live code/lecture develop the following skills skills:
+With this live code/lecture you should develop the following skills:
 - Learn how Backbone Models compare with pure Javascript Objects.
 - Learn how to adjust Jasmine tests for Backbone models
 
