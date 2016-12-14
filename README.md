@@ -3,7 +3,7 @@
 We've already done Scrabble & Player objects in Javascript.  Now we'll take those generic objects and turn'em into Backbone Models! 
 
 ## Learning Goals
-With this live code/lecture develop the following skills skills:
+With this live code/lecture you should develop the following skills:
 - Learn how Backbone Models compare with pure Javascript Objects.
 - Learn how to adjust Jasmine tests for Backbone models
 
@@ -135,6 +135,15 @@ Because the initialize function plays much the same role as a constructor in Bac
 
 We also left the defaults object in, just so we can add to it later at the end.
 
+Before working on your own, you will also need to modify the `beforeEach()` function in the spec file to look like this:
+
+```javascript
+beforeEach(function() {
+  player = new Player({
+    name: "bob"
+});
+```
+
 ### Now add the rest of the functions
 
 Next you an your partner finish migrating the rest of the functions into the Backbone Model.
@@ -194,7 +203,13 @@ var player1 = new Player({
 
 Yes, the tests were written using the attribute instead of using `get()` and `set()`, and yes OMG that's a lot to change.  
 
-Don't worry, you can find working tests [here](https://gist.github.com/CheezItMan/2d617fc903bf381c549b2859cc13c0bf):
+Don't worry, you can find working tests [here](https://gist.github.com/CheezItMan/2d617fc903bf381c549b2859cc13c0bf).
+
+The primary changes in the JavaScript tests are:
+
+1.  Convert direct changes of an attribute to use the `set()` function.  `player1.name = "bob";` to `player1.set('name', 'bob');`
+1.  Convert reads of the attribute to use the `get()` function.
+
 
 ## JS Objects vs Backbone Models
 
