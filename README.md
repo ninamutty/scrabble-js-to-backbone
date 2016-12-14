@@ -194,7 +194,13 @@ var player1 = new Player({
 
 Yes, the tests were written using the attribute instead of using `get()` and `set()`, and yes OMG that's a lot to change.  
 
-Don't worry, you can find working tests [here](https://gist.github.com/CheezItMan/2d617fc903bf381c549b2859cc13c0bf):
+Don't worry, you can find working tests [here](https://gist.github.com/CheezItMan/2d617fc903bf381c549b2859cc13c0bf).
+
+The primary changes in the JavaScript tests are:
+
+1.  Convert direct changes of an attribute to use the `set()` function.  `player1.name = "bob";` to `player1.set('name', 'bob');`
+1.  Convert reads of the attribute to use the `get()` function.
+1.  Any attributes with default variables will be set in the initialize block of the 
 
 ## JS Objects vs Backbone Models
 
