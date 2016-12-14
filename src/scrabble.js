@@ -6,7 +6,7 @@ const Scrabble = function() {};
 
 
 // Get the score for a single letter
-Scrabble.scoreLetter = function(letter) {
+Scrabble.prototype.scoreLetter = function(letter) {
   letter = letter.toUpperCase();
   var letters = ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T', 'D', 'G', 'B', 'C', 'M', 'P', 'F', 'H', 'V', 'W', 'Y', 'K', 'J', 'X', 'Q', 'Z'];
   var scores = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 8, 8, 10, 10];
@@ -19,10 +19,10 @@ Scrabble.scoreLetter = function(letter) {
 };
 
 // Get the score for a word (based on the characters that compose it and whether it has 7 letters)
-Scrabble.score = function(word) {
+Scrabble.prototype.score = function(word) {
   var total = 0;
   for (var i = 0; i < word.length; i++){
-    total += Scrabble.scoreLetter(word[i]);
+    total += this.scoreLetter(word[i]);
   }
   if (word.length == 7){
     total += 50;
@@ -31,7 +31,7 @@ Scrabble.score = function(word) {
 };
 
 
-Scrabble.highestScoreFrom = function(arrayOfWords) {
+Scrabble.prototype.highestScoreFrom = function(arrayOfWords) {
   if (arrayOfWords.constructor !== Array || arrayOfWords.length === 0){
     return null;   // If there is nothing in the array, return null as the highest scoring word
   } else if (arrayOfWords.length == 1) {
@@ -39,10 +39,10 @@ Scrabble.highestScoreFrom = function(arrayOfWords) {
   }
 
   //If we got here, there are multiple words in the array
-  var highest = [arrayOfWords[0], Scrabble.score (arrayOfWords[0])];
+  var highest = [arrayOfWords[0], this.score (arrayOfWords[0])];
 
   for (var i = 0; i < arrayOfWords.length; i++){
-    var score = Scrabble.score(arrayOfWords[i]);
+    var score = this.score(arrayOfWords[i]);
     if (score > highest[1]) {
       highest = [arrayOfWords[i], score];
     } else if (score == highest[1]) {
