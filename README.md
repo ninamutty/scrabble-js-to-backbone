@@ -135,6 +135,15 @@ Because the initialize function plays much the same role as a constructor in Bac
 
 We also left the defaults object in, just so we can add to it later at the end.
 
+Before working on your own, you will also need to modify the `beforeEach()` function in the spec file to look like this:
+
+```javascript
+beforeEach(function() {
+  player = new Player({
+    name: "bob"
+});
+```
+
 ### Now add the rest of the functions
 
 Next you an your partner finish migrating the rest of the functions into the Backbone Model.
@@ -200,7 +209,7 @@ The primary changes in the JavaScript tests are:
 
 1.  Convert direct changes of an attribute to use the `set()` function.  `player1.name = "bob";` to `player1.set('name', 'bob');`
 1.  Convert reads of the attribute to use the `get()` function.
-1.  Any attributes with default variables will be set in the initialize block of the 
+
 
 ## JS Objects vs Backbone Models
 
