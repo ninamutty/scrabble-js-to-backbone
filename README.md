@@ -170,13 +170,29 @@ You can convert plays and name to attributes here.
 
 ```javascript
 // src/player.js
+const Player = Backbone.Model.extend({
+  defaults: {
+    plays: [],
+    name: "Player-?"
+  },
+  initialize: function(options) {
 
+  },
+	...
+```
+
+People create a new player like this:
+
+```javascript
+var player1 = new Player({
+  name: 'Ada Lovelace'
+  });
 ```
 
 
 ## What!  All My Tests Broke!
 
-Yes, the tests were written using the attribute instead of using `get()` and `set()`.  
+Yes, the tests were written using the attribute instead of using `get()` and `set()`, and yes OMG that's a lot to change.  
 
 Don't worry, you can find working tests [here](https://gist.github.com/CheezItMan/2d617fc903bf381c549b2859cc13c0bf):
 
